@@ -1,0 +1,80 @@
+{
+  "clientes": [
+    {
+      "id": "1778207370788",
+      "nome": "Daniele Gomes",
+      "empresa": "Pausa Plena",
+      "email": "danielegomes.rodrigues13@gmail.com",
+      "telefone": "32999977299",
+      "doc": "",
+      "segmento": "Outro",
+      "cidade": "Juiz de Fora",
+      "status": "Ativo",
+      "obs": "",
+      "criado": "07/05/2026"
+    },
+    {
+      "id": "1778207469704",
+      "nome": "Donald Trump",
+      "empresa": "E.U.A.",
+      "email": "",
+      "telefone": "",
+      "doc": "",
+      "segmento": "Indústria",
+      "cidade": "",
+      "status": "Ativo",
+      "obs": "",
+      "criado": "07/05/2026"
+    }
+  ],
+  "servicos": [
+    {
+      "id": "1778207430021",
+      "nome": "Automação de Gestão de Clientes",
+      "categoria": "Segurança Digital",
+      "desc": "",
+      "valor": 2500,
+      "modalidade": "Projeto Único",
+      "status": "Ativo"
+    },
+    {
+      "id": "1778207495488",
+      "nome": "Gestão de ativos",
+      "categoria": "Automação Robótica (RPA)",
+      "desc": "",
+      "valor": 7200,
+      "modalidade": "Licença Anual",
+      "status": "Ativo"
+    }
+  ],
+  "vendas": [
+    {
+      "id": "1778207443672",
+      "clienteId": "1778207370788",
+      "clienteNome": "Daniele Gomes — Pausa Plena",
+      "servicoId": "1778207430021",
+      "servicoNome": "Automação de Gestão de Clientes",
+      "servicoCat": "Segurança Digital",
+      "valor": 2500,
+      "data": "08/05/2026",
+      "dataISO": "2026-05-08",
+      "status": "Vendido",
+      "obs": ""
+    },
+    {
+      "id": "1778207507788",
+      "clienteId": "1778207469704",
+      "clienteNome": "Donald Trump — E.U.A.",
+      "servicoId": "1778207495488",
+      "servicoNome": "Gestão de ativos",
+      "servicoCat": "Automação Robótica (RPA)",
+      "valor": 7200,
+      "data": "08/05/2026",
+      "dataISO": "2026-05-08",
+      "status": "Vendido",
+      "obs": ""
+    }
+  ],
+  "exportado": "2026-05-08T02:32:17.354Z",
+  "versao": "1.0"
+}
