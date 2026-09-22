@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio de Sistemas — Rogério Rodrigues</title>
+<style>
+  :root{
+    --navy:#0a1119;
+    --navy2:#0f1826;
+    --paper:#faf7f0;
+    --paper2:#f2ede0;
+    --ink:#1c1710;
+    --ink-soft:#4a4136;
+    --gold:#c9a24a;
+    --gold-light:#e8c468;
+    --line:#e4dcc8;
+
+    --c-nucleo:#c9a24a;
+    --c-financas:#2f9e58;
+    --c-saude:#2ba0a8;
+    --c-producao:#8a5fc7;
+    --c-escrita:#c98a2f;
+    --c-jogos:#d9683f;
+    --c-mapas:#1f9d8f;
+    --c-mobile:#d1558c;
+    --c-clientes:#b1462f;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sans{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+
+  /* ---------- COVER ---------- */
+  .cover{
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(201,162,74,.18), transparent 55%),
+      radial-gradient(ellipse at 100% 0%, rgba(43,160,168,.12), transparent 45%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy2) 100%);
+    color:#f3ecd9;
+    padding: 60px 64px 48px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cover::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(115deg, rgba(255,255,255,.025) 0px, rgba(255,255,255,.025) 1px, transparent 1px, transparent 64px);
+    pointer-events:none;
+  }
+  .kicker{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    font-size:11.5px;
+    color:var(--gold-light);
+    font-weight:700;
+    margin-bottom:22px;
+  }
+  .cover h1{
+    font-size:40px;
+    line-height:1.18;
+    margin:0 0 14px;
+    font-weight:400;
+    max-width:780px;
+  }
+  .cover h1 em{ font-style:normal; color:var(--gold-light); }
+  .cover p.lede{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    color:#cfc6ae;
+    max-width:620px;
+    margin:0 0 40px;
+  }
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0 24px;
+    border-top:1px solid rgba(232,196,104,.25);
+    padding-top:26px;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .stat{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    padding-right:20px;
+    border-right:1px solid rgba(232,196,104,.2);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .n{ font-size:30px; color:var(--gold-light); font-weight:700; line-height:1; display:block; margin-bottom:6px;}
+  .stat .l{ font-size:11.5px; color:#a99e84; text-transform:uppercase; letter-spacing:.12em;}
+
+  .cover-footer{
+    margin-top:46px;
+    padding-top:20px;
+    border-top:1px solid rgba(232,196,104,.15);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    color:#8f866f;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  /* ---------- TOC ---------- */
+  .toc-wrap{
+    background:var(--paper2);
+    padding:40px 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .toc-title{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:11px;
+    color:var(--ink-soft);
+    font-weight:700;
+    margin:0 0 18px;
+  }
+  .toc-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:10px 28px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  .toc-item{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    font-size:13.5px;
+    color:var(--ink);
+    text-decoration:none;
+    padding:5px 0;
+    border-bottom:1px dotted var(--line);
+  }
+  .toc-dot{ width:8px; height:8px; border-radius:50%; flex:none; }
+  .toc-item .cnt{ margin-left:auto; color:#a89b7e; font-size:11.5px;}
+
+  /* ---------- SECTIONS ---------- */
+  .section{
+    padding:52px 64px 18px;
+  }
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:8px;
+  }
+  .section-icon{
+    width:40px; height:40px;
+    border-radius:9px;
+    display:flex; align-items:center; justify-content:center;
+    flex:none;
+  }
+  .section-icon svg{ width:21px; height:21px; }
+  .section-eyebrow{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  .section h2{
+    font-size:26px;
+    font-weight:400;
+    margin:2px 0 0;
+    color:var(--ink);
+  }
+  .section-desc{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    max-width:640px;
+    margin:14px 0 30px;
+    line-height:1.6;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:18px;
+    margin-bottom:8px;
+  }
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left-width:4px;
+    border-radius:6px;
+    padding:20px 22px;
+    break-inside:avoid;
+  }
+  .card h3{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size:15.5px;
+    font-weight:700;
+    margin:0 0 8px;
+    color:var(--ink);
+  }
+  .card p{
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size:13.5px;
+    line-height:1.62;
+    color:#33291b;
+    margin:0 0 12px;
+  }
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .tag{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size:10px;
+    letter-spacing:.03em;
+    padding:3px 9px;
+    border-radius:20px;
+    background:var(--paper2);
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+  }
+
+  .divider{
+    height:1px;
+    background:var(--line);
+    margin:44px 64px 0;
+  }
+
+  /* ---------- CLOSING / FOOTER ---------- */
+  .closing{
+    background:var(--navy);
+    color:#cfc6ae;
+    padding:52px 64px 40px;
+    margin-top:20px;
+  }
+  .closing h2{
+    color:#f3ecd9;
+    font-size:22px;
+    font-weight:400;
+    margin:0 0 12px;
+  }
+  .closing p{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size:13px;
+    line-height:1.7;
+    max-width:640px;
+    color:#a99e84;
+  }
+  .closing-foot{
+    margin-top:34px;
+    padding-top:20px;
+    border-top:1px solid rgba(232,196,104,.15);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size:11.5px;
+    color:#7d745e;
+    display:flex;
+    justify-content:space-between;
+  }
+  .closing-foot strong{ color:#c9a24a; }
+
+  @media print{
+    body{ background:#fff; }
+    .section{ page-break-inside:auto; }
+    .cards{ page-break-inside:auto; }
+    .card{ page-break-inside:avoid; }
+    .cover{ page-break-after:auto; }
+  }
+  @page{
+    size:A4;
+    margin:0;
+  }
+
+  @media (max-width:760px){
+    .cover, .toc-wrap, .section, .closing{ padding-left:26px; padding-right:26px; }
+    .toc-grid{ grid-template-columns:1fr; }
+    .cards{ grid-template-columns:1fr; }
+    .stats{ grid-template-columns:repeat(2, 1fr); gap:18px 20px; }
+    .divider{ margin-left:26px; margin-right:26px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ COVER ============ -->
+  <header class="cover">
+    <div class="kicker">Portfólio Técnico · 2026</div>
+    <h1>Guia de Sistemas <em>&amp; Aplicações</em><br>desenvolvidos por Rogério Rodrigues</h1>
+    <p class="lede">
+      Um retrato ilustrado do que foi construído até aqui: sistemas de gestão, jogos autorais,
+      ferramentas de saúde e finanças, aplicativos Android e soluções sob medida para clientes —
+      todos projetados e implementados de ponta a ponta, com identidade visual própria em cada um.
+    </p>
+    <div class="stats">
+      <div class="stat"><span class="n">28</span><span class="l">Sistemas &amp; Apps</span></div>
+      <div class="stat"><span class="n">9</span><span class="l">Categorias</span></div>
+      <div class="stat"><span class="n">2</span><span class="l">Apps Android</span></div>
+      <div class="stat"><span class="n">3</span><span class="l">Projetos para Clientes</span></div>
+    </div>
+    <div class="cover-footer">
+      <span>Desenvolvimento independente · HTML/JS local-first, sem dependência de servidor</span>
+      <span>Rogério Rodrigues</span>
+    </div>
+  </header>
+
+  <!-- ============ TOC ============ -->
+  <nav class="toc-wrap">
+    <p class="toc-title">Neste guia</p>
+    <div class="toc-grid">
+      <a class="toc-item" href="#nucleo"><span class="toc-dot" style="background:var(--c-nucleo)"></span>Sistema Principal &amp; Portal<span class="cnt">2</span></a>
+      <a class="toc-item" href="#financas"><span class="toc-dot" style="background:var(--c-financas)"></span>Finanças &amp; Gestão Pessoal<span class="cnt">5</span></a>
+      <a class="toc-item" href="#saude"><span class="toc-dot" style="background:var(--c-saude)"></span>Saúde &amp; Rotina<span class="cnt">3</span></a>
+      <a class="toc-item" href="#producao"><span class="toc-dot" style="background:var(--c-producao)"></span>Produção &amp; Negócios<span class="cnt">2</span></a>
+      <a class="toc-item" href="#escrita"><span class="toc-dot" style="background:var(--c-escrita)"></span>Escrita &amp; Narrativa<span class="cnt">3</span></a>
+      <a class="toc-item" href="#jogos"><span class="toc-dot" style="background:var(--c-jogos)"></span>Jogos<span class="cnt">7</span></a>
+      <a class="toc-item" href="#mapas"><span class="toc-dot" style="background:var(--c-mapas)"></span>Mapas &amp; Atlas<span class="cnt">1</span></a>
+      <a class="toc-item" href="#mobile"><span class="toc-dot" style="background:var(--c-mobile)"></span>Aplicativos Android<span class="cnt">2</span></a>
+      <a class="toc-item" href="#clientes"><span class="toc-dot" style="background:var(--c-clientes)"></span>Projetos para Clientes<span class="cnt">3</span></a>
+    </div>
+  </nav>
+
+  <!-- ============ NÚCLEO ============ -->
+  <section class="section" id="nucleo">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(201,162,74,.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c9a24a" stroke-width="1.6"><path d="M12 2l2.6 6.3L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.4-.7L12 2z"/></svg>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="color:var(--c-nucleo)">01 · Núcleo</div>
+        <h2>Sistema Principal &amp; Portal</h2>
+      </div>
+    </div>
+    <p class="section-desc">O centro de tudo: a ferramenta de trabalho diário e o portal que organiza e dá acesso a toda a coleção de sistemas pessoais.</p>
+    <div class="cards">
+      <div class="card" style="border-left-color:var(--c-nucleo)">
+        <h3>GESCON — Gestão de Contratos</h3>
+        <p>Sistema principal de trabalho: plataforma completa para gestão de contratos de TI na administração pública, cobrindo medições, avaliações trimestrais, penalidades, atas de registro de preço, capacitações/treinamentos, ordens de serviço e calendário de prazos. Roda inteiramente em um único arquivo HTML, sem servidor, com versão Android complementar (GESCON Consulta).</p>
+        <div class="tags"><span class="tag">Offline-first</span><span class="tag">IA para extração de PDF</span><span class="tag">App Android</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-nucleo)">
+        <h3>Painel de Sistemas — Portal Central</h3>
+        <p>O hub que reúne, organiza e dá busca a todos os sistemas pessoais em um catálogo dirigido por categorias. É a porta de entrada de toda a coleção, com identidade visual própria e navegação unificada entre os demais sistemas.</p>
+        <div class="tags"><span class="tag">Catálogo pesquisável</span><span class="tag">Navegação central</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ FINANÇAS ============ -->
+  <section class="section" id="financas">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(47,158,88,.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2f9e58" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5c0-1.4 1.3-2.3 3-2.3 1.9 0 3 1 3 2.2 0 3-6 1.4-6 4.3 0 1.3 1.3 2.3 3 2.3s3-1 3-2.3"/></svg>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="color:var(--c-financas)">02 · Finanças</div>
+        <h2>Finanças &amp; Gestão Pessoal</h2>
+      </div>
+    </div>
+    <p class="section-desc">Ferramentas para planejar, simular e decidir — do fluxo de caixa mensal à precificação de novos projetos.</p>
+    <div class="cards">
+      <div class="card" style="border-left-color:var(--c-financas)">
+        <h3>Fluxo Financeiro</h3>
+        <p>Painel financeiro pessoal que consolida extratos bancários e contracheques extraídos de PDF em uma visão única, com gráficos, alertas de contas fixas e comparação mês a mês — totalmente local, sem depender de nenhum serviço externo.</p>
+        <div class="tags"><span class="tag">Leitura de PDF</span><span class="tag">Gráficos</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-financas)">
+        <h3>Fluxo Anual</h3>
+        <p>Simulador de fluxo de caixa com horizonte de 17 meses, calibrado com dados reais de folha de pagamento, que projeta bônus, 13º salário e despesas recorrentes para antecipar meses de aperto e de folga.</p>
+        <div class="tags"><span class="tag">Projeção financeira</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-financas)">
+        <h3>Simulador de Rendimentos</h3>
+        <p>Ferramenta de simulação de investimentos que compara diferentes aplicações — incluindo Tesouro Selic e criptoativos — para apoiar decisões financeiras pessoais de médio e longo prazo.</p>
+        <div class="tags"><span class="tag">Investimentos</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-financas)">
+        <h3>Avaliador Veicular</h3>
+        <p>Apoia a troca ou compra de veículo: consulta automática da tabela FIPE, define orçamento e prioridades (segurança, economia, conforto etc.) e usa IA para pesquisar opções reais no mercado, com prós e contras de cada uma.</p>
+        <div class="tags"><span class="tag">FIPE</span><span class="tag">Pesquisa com IA</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-financas)">
+        <h3>Precificador de Sistemas</h3>
+        <p>Ferramenta para precificar projetos de desenvolvimento sob medida: cronômetro por projeto, variáveis de complexidade, urgência, tecnologia e suporte, e emissão de recibos — um interno detalhado, outro simplificado para o cliente.</p>
+        <div class="tags"><span class="tag">Cronômetro</span><span class="tag">Emissão de recibos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ SAÚDE ============ -->
+  <section class="section" id="saude">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(43,160,168,.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2ba0a8" stroke-width="1.6"><path d="M12 20s-7.5-4.6-9.8-9.1C.6 7.4 2.4 4 5.8 4c2 0 3.5 1.1 4.2 2.4C10.7 5.1 12.2 4 14.2 4c3.4 0 5.2 3.4 3.6 6.9C15.5 15.4 12 20 12 20z"/></svg>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="color:var(--c-saude)">03 · Saúde &amp; Rotina</div>
+        <h2>Saúde &amp; Rotina</h2>
+      </div>
+    </div>
+    <p class="section-desc">Acompanhamento de bem-estar, alimentação e deslocamento no dia a dia.</p>
+    <div class="cards">
+      <div class="card" style="border-left-color:var(--c-saude)">
+        <h3>Saúde</h3>
+        <p>Painel de acompanhamento de corridas e saúde física, com gráficos de ritmo, velocidade e evolução ao longo do tempo, além de um leitor de exames em PDF compatível com múltiplos formatos de laboratório.</p>
+        <div class="tags"><span class="tag">Métricas de corrida</span><span class="tag">Leitura de exames</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-saude)">
+        <h3>Diário Lactose &amp; Glúten</h3>
+        <p>Diário de saúde para monitorar ingestão diária de lactose e glúten, exercícios, peso e sintomas, com dashboard de evolução mensal, sequências (streaks) e conquistas — construído com a lógica de um acompanhamento endocrinológico.</p>
+        <div class="tags"><span class="tag">Dashboard mensal</span><span class="tag">Gamificação</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-saude)">
+        <h3>Bordo — Diário de Trajeto &amp; Veículo</h3>
+        <p>Diário de viagens e gestão de veículo para a rota Juiz de Fora–Rio de Janeiro, com identidade visual de painel de instrumentos automotivo e módulo de documentos (seguro, IPVA, licenciamento) com alertas de vencimento.</p>
+        <div class="tags"><span class="tag">Painel estilo cockpit</span><span class="tag">Alertas de documentos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ PRODUÇÃO ============ -->
+  <section class="section" id="producao">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(138,95,199,.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8a5fc7" stroke-width="1.6"><path d="M3 20V10l6 4V10l6 4V10l6 4v6H3z"/><path d="M3 20h18"/></svg>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="color:var(--c-producao)">04 · Produção</div>
+        <h2>Produção &amp; Negócios</h2>
+      </div>
+    </div>
+    <p class="section-desc">Sistemas de gestão operacional construídos para necessidades reais — de terceiros e de casa.</p>
+    <div class="cards">
+      <div class="card" style="border-left-color:var(--c-producao)">
+        <h3>Pausa Plena</h3>
+        <p>Sistema completo de gestão para uma saboaria artesanal: controle de insumos, formulações de laboratório, clientes, produtos, vendas e relatórios, além de catálogo digital e materiais de campanha para redes sociais.</p>
+        <div class="tags"><span class="tag">PWA</span><span class="tag">Controle de estoque</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-producao)">
+        <h3>Painel de Estudos</h3>
+        <p>Sistema de apoio aos estudos com correção de questões, cronograma, revisões e técnica pomodoro, incluindo sincronização sob demanda com anotações de estudo externas.</p>
+        <div class="tags"><span class="tag">Cronograma</span><span class="tag">Pomodoro</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ ESCRITA ============ -->
+  <section class="section" id="escrita">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(201,138,47,.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c98a2f" stroke-width="1.6"><path d="M20 4c-6 0-11 3-14 9 4-1 7-1 10 1-3 .5-6 2-7 5 5 0 9-2 11-6 1.6-3.2 1.5-6.4 0-9z"/></svg>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="color:var(--c-escrita)">05 · Narrativa</div>
+        <h2>Escrita &amp; Narrativa</h2>
+      </div>
+    </div>
+    <p class="section-desc">Projetos criativos que unem tecnologia e ficção — engines de narrativa e uma novela completa.</p>
+    <div class="cards">
+      <div class="card" style="border-left-color:var(--c-escrita)">
+        <h3>Tecelão</h3>
+        <p>Plataforma de escrita colaborativa em turnos: o usuário escreve um trecho, a IA continua mantendo a coerência do enredo através de uma "bússola narrativa", tecendo a história a quatro mãos — com leitor de voz embutido.</p>
+        <div class="tags"><span class="tag">Escrita com IA</span><span class="tag">Leitor de voz</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-escrita)">
+        <h3>Crônicas I &amp; II</h3>
+        <p>Dois jogos de RPG interativo em que o jogador escolhe tema, personagem e decisões que moldam diretamente a trama e o desfecho — seis mundos narrativos em cada volume, com dezenas de finais possíveis.</p>
+        <div class="tags"><span class="tag">RPG interativo</span><span class="tag">Múltiplos finais</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-escrita)">
+        <h3>O Arquivista</h3>
+        <p>Thriller psicológico de ficção em português, com cerca de 29 mil palavras, produzido com pipeline completo: manuscrito, guia de mundo, mapa ilustrado e ilustrações de capítulo, reunidos em um PDF encadernado.</p>
+        <div class="tags"><span class="tag">Romance</span><span class="tag">PDF ilustrado</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ JOGOS ============ -->
+  <section class="section" id="jogos">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(217,104,63,.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#d9683f" stroke-width="1.6"><rect x="2" y="8" width="20" height="10" rx="5"/><path d="M7 11v4M5 13h4"/><circle cx="15.5" cy="12" r="1"/><circle cx="18" cy="14.5" r="1"/></svg>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="color:var(--c-jogos)">06 · Jogos</div>
+        <h2>Jogos</h2>
+      </div>
+    </div>
+    <p class="section-desc">A categoria mais ampla do portfólio: estratégia, simulação, aventura em texto e clássicos de arcade recriados do zero.</p>
+    <div class="cards">
+      <div class="card" style="border-left-color:var(--c-jogos)">
+        <h3>Batalha Naval</h3>
+        <p>Releitura do clássico jogo de batalha naval com estética vintage de carta náutica, caravelas desenhadas em vetor, três níveis de dificuldade e manobras especiais exclusivas.</p>
+        <div class="tags"><span class="tag">Estratégia</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-jogos)">
+        <h3>WAR Romano</h3>
+        <p>Jogo de conquista territorial no estilo Risk ambientado no Império Romano, com cartografia histórica real, até 74 províncias, cartas de objetivo, múltiplos jogadores humanos e trilha sonora própria.</p>
+        <div class="tags"><span class="tag">Conquista territorial</span><span class="tag">Multiplayer local</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-jogos)">
+        <h3>CyberJudas</h3>
+        <p>Simulador presidencial geopolítico inspirado no clássico de 1996, com mapa-múndi real de quase 200 países, três modos de jogo — incluindo um traidor infiltrado no gabinete — decisões de guerra e diplomacia, e conflitos históricos reais entre terceiros.</p>
+        <div class="tags"><span class="tag">Simulação geopolítica</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-jogos)">
+        <h3>Global Defense</h3>
+        <p>Jogo de defesa antimísseis em 3D, com sistema de alianças, armas especiais, conquistas e eventos aleatórios ao longo das partidas.</p>
+        <div class="tags"><span class="tag">3D · Three.js</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-jogos)">
+        <h3>Pacote Arcade</h3>
+        <p>Coletânea com oito clássicos do arcade recriados do zero — Space Invaders, Pac-Man, Donkey Kong, Breakout, Snake, Pong, Demon Attack e Jogo da Velha — cada um com sua própria galeria de recordes.</p>
+        <div class="tags"><span class="tag">8 jogos em 1</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-jogos)">
+        <h3>Selva</h3>
+        <p>Aventura em texto inspirada nos clássicos de Renato Degiovani: sobrevivência na Amazônia após uma queda de avião, com parser de comandos em português e arte procedural em estilo retrô.</p>
+        <div class="tags"><span class="tag">Ficção interativa</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-jogos)">
+        <h3>Serra Pelada</h3>
+        <p>Aventura em texto ambientada no garimpo de ouro de 1983, com uma economia simulada como espinha dorsal da jogabilidade e a mesma estética retrô de Selva.</p>
+        <div class="tags"><span class="tag">Ficção interativa</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ MAPAS ============ -->
+  <section class="section" id="mapas">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(31,157,143,.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1f9d8f" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 5.7 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.7-4-9s1.5-6.4 4-9z"/></svg>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="color:var(--c-mapas)">07 · Mapas</div>
+        <h2>Mapas &amp; Atlas</h2>
+      </div>
+    </div>
+    <p class="section-desc">Referência geográfica interativa, fora do universo de jogos e finanças.</p>
+    <div class="cards">
+      <div class="card" style="border-left-color:var(--c-mapas)">
+        <h3>Mapa Mundi</h3>
+        <p>Atlas interativo com cidades principais, popups detalhados sobre população e fuso horário, busca de novas cidades e cálculo/animação de distância entre dois pontos quaisquer do globo.</p>
+        <div class="tags"><span class="tag">Mapa interativo</span><span class="tag">Cálculo de distância</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ MOBILE ============ -->
+  <section class="section" id="mobile">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(209,85,140,.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#d1558c" stroke-width="1.6"><rect x="7" y="2" width="10" height="20" rx="2.2"/><path d="M11 18h2"/></svg>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="color:var(--c-mobile)">08 · Mobile</div>
+        <h2>Aplicativos Android</h2>
+      </div>
+    </div>
+    <p class="section-desc">Apps nativos independentes, empacotados via WebView, com câmera, OCR e leitura de código de barras.</p>
+    <div class="cards">
+      <div class="card" style="border-left-color:var(--c-mobile)">
+        <h3>Sentinela</h3>
+        <p>Aplicativo Android que fotografa rótulos de alimentos, faz leitura de código de barras e OCR, e sinaliza aditivos potencialmente prejudiciais contra uma lista de vigilância editável pelo próprio usuário.</p>
+        <div class="tags"><span class="tag">OCR</span><span class="tag">Código de barras</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-mobile)">
+        <h3>Bulário</h3>
+        <p>Aplicativo irmão do Sentinela, voltado a medicamentos: identifica princípios ativos em embalagens fotografadas e cruza com o tratamento em uso, alertando sobre interações e contraindicações.</p>
+        <div class="tags"><span class="tag">OCR</span><span class="tag">Cruzamento de tratamento</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ CLIENTES ============ -->
+  <section class="section" id="clientes">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(177,70,47,.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#b1462f" stroke-width="1.6"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="color:var(--c-clientes)">09 · Clientes</div>
+        <h2>Projetos para Clientes &amp; Empresa</h2>
+      </div>
+    </div>
+    <p class="section-desc">Soluções sob medida entregues para terceiros e para a própria empresa, Fishbone Tecnologia.</p>
+    <div class="cards">
+      <div class="card" style="border-left-color:var(--c-clientes)">
+        <h3>Fishbone Tecnologia — CRM</h3>
+        <p>Aplicação de CRM para a própria empresa: cadastro de clientes, catálogo de serviços, funil de vendas e dashboard de relatórios, hospedada no GitHub Pages com autenticação Firebase.</p>
+        <div class="tags"><span class="tag">CRM</span><span class="tag">Firebase</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-clientes)">
+        <h3>Trevo Veículos</h3>
+        <p>Sistema para uma revenda de veículos: controle de estoque, vendas, custos e acesso por níveis de usuário, com manual do usuário em PDF de 13 páginas.</p>
+        <div class="tags"><span class="tag">Cliente</span><span class="tag">Controle de estoque</span></div>
+      </div>
+      <div class="card" style="border-left-color:var(--c-clientes)">
+        <h3>Em Alta — Gestão Financeira</h3>
+        <p>Aplicativo de gestão financeira sob medida, com identidade visual própria, temas claro/escuro e manual do usuário completo, incluindo exportação em PDF.</p>
+        <div class="tags"><span class="tag">Cliente</span><span class="tag">Temas claro/escuro</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <footer class="closing">
+    <h2>Uma assinatura em comum</h2>
+    <p>
+      Apesar da diversidade de temas — de contratos públicos a impérios romanos — todos os sistemas
+      deste portfólio compartilham a mesma filosofia de construção: arquivo único, funcionamento
+      offline, sem dependência de servidor, validado a cada entrega e com identidade visual pensada
+      especificamente para o seu propósito.
+    </p>
+    <div class="closing-foot">
+      <span><strong>Rogério Rodrigues</strong> · Fiscal Administrativo de Contratos, DGTI/DATAPREV</span>
+      <span>Guia gerado em setembro de 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>
